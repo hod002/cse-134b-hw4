@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Native dialogs</title>
+    <script type="text/javascript" src="./node_modules\dompurify\dist\purify.js"></script>
+    <script type="text/javascript" src="./customdialog.js"></script>
+</head>
+
+<body>
+    <h1>Part 1</h1>
+    <form id="button-container">
+        <button id="alert" type="button" value="alert">Alert</button>
+        <button id="confirm" type="button" value="confirm">Confirm</button>
+        <button id="prompt" type="button" value="prompt">Prompt</button>
+        <button id="safer-prompt" type="button" value="safer-prompt">Safer Prompt</button>
+    </form>
+    <output id="output"></output>
+    <hr><br>
+
+    <h2>Part 2</h2>
+    <form id="button-container2">
+        <button id="alert2" type="button" value="alert">Alert</button>
+        <button id="confirm2" type="button" value="confirm">Confirm</button>
+        <button id="prompt2" type="button" value="prompt">Prompt</button>
+        <button id="safer-prompt2" type="button" value="safer-prompt">Safer Prompt</button>
+    </form>
+    <dialog id="dialog"></dialog>
+    <output id="output2"></output>
+
+    <script>
+        window.addEventListener("click", clicked);
+
+        function clicked(event) {
+            event.preventDefault();
+            // Part 1 event handling
+            if (event.target.id == "alert") {
+                alert("alert part 1 clicked");
+            } else if (event.target.id == "confirm") {
+                let confirmValue = confirm("Confirmation part 1");
+                document.getElementById("output").innerHTML =
+                    `The value returned by the confirm method is : ${confirmValue}`;
+            } else if (event.target.id == "prompt") {
+                let input = prompt("Prompt Part 1:");
+                if (input == "") {
+                    input = "User didn't enter anything";
+                }
+                document.getElementById("output").innerHTML = `${displayOutput(input)}`;
+            } else if (event.target.id == "safer-prompt") {
+                let input = prompt("Safe Prompt Part 1:");
+                if (input == "") {
+                    input = "User didn't enter anything";
+                }
+                input = DOMPurify.sanitize(input);
+                document.getElementById("output").innerHTML = `${displayOutput(input)}`;
+
+            } else if (event.target.id == "alert2") { // Part 2 Event Handling
+                alertDialog();
+            } else if (event.target.id == "confirm2") {
+                confirmDialog();
+            } else if (event.target.id == "prompt2") {
+                promptDialog();
+            } else if (event.target.id == "safer-prompt2") {
+                saferPromptDialog();
+            }
+        }
+
+        function displayOutput(str) {
+            let temp = document.createElement("p");
+            temp.textContent = str;
+            return temp.innerHTML;
+        }
+    </script>
+</body>

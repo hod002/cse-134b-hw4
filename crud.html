@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+    <title>CRUD</title>
+    <script type="text/javascript" src="./node_modules\dompurify\dist\purify.js"></script>
+    <script type="text/javascript" src="./blog.js"></script>
+</head>
+<body>
+    <h1>Blog</h1>
+    <button id="post-btn" type="button">Create Post</button>
+    <hr>
+    
+    <dialog id="dialog">
+        <form id="post-form">
+            <label for="title">Title:</label>
+            <input type="text" id="title" required/>
+            <br>
+            <label for="post">Post</label>
+            <textarea id="post" required></textarea>
+            <br>
+            <button type="submit" id="submit-btn">Submit</button>
+            <button type="button" id="cancel-btn">Cancel</button>
+        </form>
+    </dialog>
+    
+    <dl id="post-list">
+    </dl>
+</body>
