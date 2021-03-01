@@ -169,6 +169,8 @@ function updatePost(postData, postIdx) {
 
   // Update editBtn id, deleteBtn id, stored post data, and DOM
   container.id = postData.title;
+  editBtn.id = `edit:${postData.title}`;
+  deleteBtn.id = `delete:${postData.title}`;
   container.children[0].innerHTML = `${postTitle} ${postData.date}`;
   container.children[1].innerHTML = postContent;
   storedPosts[postIdx].id = postTitle;
